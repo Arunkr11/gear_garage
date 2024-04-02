@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+                        /* solid background */
+                background: rgb(0,212,255);
+                
+                /* gradient background*/
+                background: linear-gradient(45deg, rgba(0,212,255,1) 0%, rgba(11,3,45,1) 100%);    
+                
+                /* photo background */
+                background-image: url(https://images.unsplash.com/photo-1619204715997-1367fe5812f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=fomat&fit=crop&w=1889&q=80);
+                background-size: cover;
+                background-position: center;  
+                
+                display: flex;
+                align-items: center;
+                justify-content: center;    
+                height: 100vh; 
+        }
+
+        form {
+                background-color: rgba(255, 255, 255, 0); /* Completely transparent */
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(215, 213, 213, 0.1);
+                padding: 20px;
+                width: 500px;
+                height: 100vh;
+}
+
+        h2 {
+            text-align: center;
+            color: #f7f3f3;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #9d9d9d;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        button[type="submit"]
+         {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+            
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Add </h2>
+       <p style="text-decoration-color:#f7f3f3 ;">{{form}}</p>
+
+        <button type="submit">ADD</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIKE ADD VIEW</title>
+</head>
+<body>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h2>hello mf</h2>
+    <p>{{form}}</p>
+    <button type="submit">ADD</button>
+    </form>
+</body>
+</html> -->
