@@ -73,6 +73,7 @@ class Notification(models.Model):
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
+    is_replied=models.BooleanField(default=False,null=True)
 
 def create_whislist(sender,instance,created,**kwargs):
     #instance=user_object :ie is the account created user

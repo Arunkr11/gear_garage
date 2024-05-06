@@ -1,0 +1,73 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%for r in data%}
+    <a href=""> {{r.vehicle_object}}
+        {{r.reply}}
+        {{r.vehicle_object.owner}}
+    </a>
+    {%endfor%}
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message View</title>
+    <style>
+        body {
+            background-color: #28adef;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin-bottom: 20px;
+        }
+
+        .bike-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .message-content {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {%for r in data%}
+        <div class="message">
+            <div class="bike-name">{{r.vehicle_object}}</div>
+            <div class="message-content" >
+                message reply : <span style="color: red;">{{r.reply}}</span>
+            </div>
+            
+        </div>
+        {%endfor%}
+    </div>
+</body>
+</html>

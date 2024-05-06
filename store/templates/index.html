@@ -7,6 +7,16 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!--font-family-->
@@ -56,6 +66,63 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+		<style>
+			/* Style for the button */
+			button {
+				padding: 1px 1px; /* Adjust padding to decrease button size */
+				background-color: #4CAF50; /* Button background color */
+				color: white; /* Button text color */
+				border: none; /* Remove default button border */
+				border-radius: 5px; /* Add border radius for rounded corners */
+				cursor: pointer; /* Show pointer cursor on hover */
+				transition: background-color 0.3s ease; /* Smooth transition on hover */
+			}
+	
+			button:hover {
+				background-color: #45a049; /* Change background color on hover */
+			}
+	
+			/* Style for the link inside the button */
+			button a {
+				text-decoration: none; /* Remove underline from link */
+				color: inherit; /* Inherit text color from button */
+			}
+
+
+
+				/* CSS styles for alignment */
+				.new-cars {
+					text-align: center; /* Align section content to the center */
+					padding: 50px 0; /* Add padding to the section for spacing */
+				}
+		
+				.new-cars-item {
+					display: inline-block; /* Display new-cars-item elements in a row */
+				}
+		
+				.new-cars-item .single-new-cars-item {
+					margin: 0 10px; /* Add margin between individual new-cars-items */
+				}
+		
+				.new-cars-txt {
+					background-color: #f9f9f9; /* Add background color to new-cars-txt for visibility */
+					padding: 20px; /* Add padding to new-cars-txt for spacing */
+				}
+		
+				/* Optional: Media query for responsiveness */
+				@media (max-width: 768px) {
+					.new-cars-item {
+						display: block; /* Change display to block for smaller screens */
+					}
+		
+					.new-cars-item .single-new-cars-item {
+						margin: 10px 0; /* Adjust margin for smaller screens */
+					}
+				}
+		
+		</style>
+
+
     </head>
 	
 	<body>
@@ -85,16 +152,24 @@
 				            <!-- End Header Navigation -->
 
 				            <!-- Collect the nav links, forms, and other content for toggling -->
-				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-				                    <li class=" scroll active"><a href="#home">home</a></li>
-				                    <li class="scroll"><a href="{% url 'sellbike' %}">sell bike</a></li>
-				                    <li class="scroll"><a href="#featured-cars">Index</a></li>
-				                    <li class="scroll"><a href="#new-cars">new bikes</a></li>
-				                    <li class="scroll"><a href="{% url 'whishlist-basket'%}">wishlist</a></li>
-				                    <li class="scroll"><a href="#contact">contact</a></li>
-				                </ul><!--/.nav -->
-				            </div><!-- /.navbar-collapse -->
+							<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+								<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+									<li class="scroll active"><a href="#home">home</a></li>
+									<li class="scroll"><a href="{% url 'sellbike' %}">sell bike</a></li>
+									<li class="scroll"><a href="#featured-cars">Index</a></li>
+									<li class="scroll"><a href="#new-cars">My bikes</a></li>
+									<li class="scroll"><a href="{% url 'whishlist-basket'%}">wishlist</a></li>
+									<li class="scroll dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="{% url 'reply-list' %}">Sent Messages</a></li>
+											<li><a href="{% url 'message-list' %}">Reply Messages</a></li>
+										</ul>
+									</li>
+									<li class="scroll"><a href="{%url 'signout'%}">LogOut</a></li>
+								</ul><!--/.nav -->
+							</div>
+							<!-- /.navbar-collapse -->
 				        </div><!--/.container-->
 				    </nav><!--/nav-->
 				    <!-- End Navigation -->
@@ -134,16 +209,19 @@
 				<div class="featured-cars-content">
 					<div class="row">
 						{%for p in data%}
+						 	{%if p not in veh%}
 						<div class="col-lg-3 col-md-4 col-sm-6">
-							<div class="single-featured-cars">
+							<div class="single-featured-cars ">
 								<div class="featured-img-box">
-									<div class="featured-cars-img">
-										<img src="{{p.image.url}}" alt="cars">
-									</div>
+									<a href="{%url 'vehicle-detail' p.id%}">
+										<div class="featured-cars-img">
+											<img src="{{p.image.url}}" alt="cars">
+										</div>
+									</a>
 									<div class="featured-model-info">
 										<p>
 											
-											<span class="featured-mi-span"> {{p.brand_object}}</span> 
+											<span class="featured-mi-span"><a href="{%url 'vehicle-detail' p.id%}">{{p.brand_object}}</a></span> 
 											<span class="featured-hp-span"> {{p.fuel}}</span>
 											 
 										</p>
@@ -151,8 +229,8 @@
 								</div>
 								<div class="featured-cars-txt">
 									<h2 ><a href="{%url 'vehicle-detail' p.id%}">{{p.title}}</a></h2>
-									<h3>{{p.price}}</h3>
-									<button href="$"></button><!--add by me-->
+									<h3>Price : {{p.price}}</h3>
+									
 
 									<p>
 										
@@ -160,6 +238,7 @@
 								</div>
 							</div>
 						</div>
+						{%endif%}
 						{%endfor%}
 					</div>
 					
@@ -193,10 +272,12 @@
 											</div>
 											<div class="col-lg-3 col-md-4 col-sm-6 " style="margin-top: 20px;">
 												<div class="new-cars-txt">
-													<h2><a href="#">{{p.title}}n</a></h2>
+													<h2><a href="#">{{p.title}}</a></h2>
 													<p>
 														{{p.decription}} 
+
 													</p>
+													
 													
 												</div><!--/.new-cars-txt-->	
 											</div><!--/.col-->
@@ -336,19 +417,19 @@
 									<div class="col-md-7 col-xs-6">
 										<ul>
 											<li><a href="#">BMW</a></li>
-											<li><a href="#">lamborghini</a></li>
-											<li><a href="#">camaro</a></li>
-											<li><a href="#">audi</a></li>
-											<li><a href="#">infiniti</a></li>
-											<li><a href="#">nissan</a></li>
+											<li><a href="#">KTM</a></li>
+											<li><a href="#">YAMAHA</a></li>
+											<li><a href="#">BAJAJ</a></li>
+											<li><a href="#">KAWAZAKI</a></li>
+											<li><a href="#">TVS</a></li>
 										</ul>
 									</div>
 									<div class="col-md-5 col-xs-6">
 										<ul>
-											<li><a href="#">ferrari</a></li>
-											<li><a href="#">porsche</a></li>
-											<li><a href="#">land rover</a></li>
-											<li><a href="#">aston martin</a></li>
+											<li><a href="#">ENFIELD</a></li>
+											<li><a href="#">SUZUKI</a></li>
+											<li><a href="#">APPRILA</a></li>
+											<li><a href="#">HAYABUSA</a></li>
 											<li><a href="#">mersedes</a></li>
 											<li><a href="#">opel</a></li>
 										</ul>
@@ -378,11 +459,11 @@
 				</div>
 				<div class="footer-copyright">
 					<div class="row">
-						<div class="col-sm-6">
+						<!-- <div class="col-sm-6">
 							<p>
 								&copy; copyright.designed and developed by <a href="https://www.themesine.com/">themesine</a>.
-							</p><!--/p-->
-						</div>
+							</p>
+						</div> -->
 						<div class="col-sm-6">
 							<div class="footer-social">
 								<a href="#"><i class="fa fa-facebook"></i></a>	

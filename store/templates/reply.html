@@ -1,0 +1,96 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="{%url 'reply' data.id%}" method="post">
+        {%csrf_token%}
+        <input type="text" name="reply">
+        <button type="submit"> send</button>
+    </form>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Reply</title>
+    <style>
+        body {
+            background-color: #28adef;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .reply-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .reply-form {
+            text-align: center;
+        }
+
+        .reply-label {
+            font-weight: bold;
+        }
+
+        .reply-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Ensures the padding is included in the width */
+        }
+
+        .reply-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28adef;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .reply-button:hover {
+            background-color: #28adef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="reply-header">Reply to Message</h1>
+        <form action="{%url 'reply' data.id%}" method="post" class="reply-form">
+            {%csrf_token%}
+            <label for="reply" class="reply-label">Your Reply:</label><br>
+            <textarea id="reply" name="reply" rows="4" cols="50" class="reply-textarea"></textarea><br>
+            <input type="submit" value="Reply" class="reply-button">
+        </form>
+    </div>
+</body>
+</html>
+
+

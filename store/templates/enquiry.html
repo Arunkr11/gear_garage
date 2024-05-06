@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'css/enqiry.css'%}">
+</head>
+<body>
+    <style>
+        #form {
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px; 
+            border-radius: 8px; 
+            border: none;
+            color: rgb(234, 182, 24); 
+            cursor: pointer;
+            transition: background-color 0.3s ease; 
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049; 
+        }
+    </style>
+    <header>
+        <h1>Contact us</h1>
+    </header>
+    <div id="form">
+    <div class="fish" id="fish"></div>
+    <div class="fish" id="fish2"></div>
+
+    <form id="waterform" action="{%url 'enquiry' data.id%}" method="post">
+        {%csrf_token%}
+        <h4 style="color: rgb(234, 159, 19);">{{data.title}}</h4>
+        <img src="{{data.image.url}}" alt="" height="100px">
+        <h5 style="color: rgb(234, 159, 19);">Rs:{{data.price}}</h5>
+        <input type="text" name="message">
+        <button type="submit" value="Send your message!">Send</button>
+    </form>
+    </div>
+    
+</body>
+<script src="{%static 'js/enquiry.js'%}"></script>
+</html>
+

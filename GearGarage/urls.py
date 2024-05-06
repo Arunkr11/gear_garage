@@ -33,7 +33,12 @@ urlpatterns = [
     path('wishlist/items/all',views.WhislistItemView.as_view(),name="whishlist-basket"),
     path("vehicle/<int:pk>/notifications/",views.NotificationView.as_view(), name="notification"),
     path('vehicle/owner/text/',views.VehicleNotificationView.as_view(),name="name"),
-    # path('wishlist/item/<int:pk>/remove',views.WishlistItemRemoveView.as_view(),name="wishlistitem-remove"),
+    path("vehicle/message/<int:pk>/", views.Enquiry.as_view(), name = "enquiry"), 
+    path("vehicle/reply/list/", views.ReplyList.as_view(), name="reply-list"),
+    path("vehicle/reply/<int:pk>/", views.Reply.as_view(), name = "reply"),
+    path("vehicle/message/list/", views.MessageList.as_view(), name = "message-list"),
+    path('signout/',views.SignOutView.as_view(),name='signout'),
+    path('wishlist/item/<int:pk>/remove',views.WishlistItemRemoveView.as_view(),name="wishlistitem-remove"),
     
     
     

@@ -11,25 +11,36 @@
         /* Additional styling for improved aesthetics */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #30d2f2; /* Change body background color here */
+            margin: 0;
+            padding: 0;
         }
         .wishlist-container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
-            background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
         .motorbike-item {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: slideInUp 0.5s ease;
+            background-color: rgb(255, 255, 255); /* Add background color for wishlist items */
+        }
+        .motorbike-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         .thumbnail {
-            border: 1px solid #ddd;
+            border: 1px solid #f6f5f5;
             border-radius: 4px;
-            padding: 5px;
             width: 100px;
             height: auto;
             margin-right: 20px;
@@ -37,46 +48,103 @@
         h2 {
             font-size: 1.5rem;
             margin: 0;
+            color: #333;
+            text-align: center;
         }
         p {
             font-size: 1rem;
             color: #777;
+            margin: 5px 0;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: #98d4f3;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #28adef;
         }
         button {
-            background-color: #007bff;
+            background-color: #dc3545;
             color: #fff;
             border: none;
             padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #c82333;
         }
         .center-heading {
             text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .go-to-home-link {
+            padding: 6px 10px;
+            background-color: #98d4f3;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .go-to-home-link:hover {
+            background-color: #98d4f3;
         }
     </style>
 </head>
 <body>
     <div>
-        <h2 class="center-heading">My Wishlist</h2>
+        <h2 class="center-heading" style="color: white; font-weight: bold;">My Wishlist</h2>
     </div>
     {% for p in data %}
     <div class="wishlist-container">
         
-        <div class="motorbike-item mt-3" >
+        <div class="motorbike-item" >
             <img src="{{ p.image.url }}" alt="{{ p.title }}" class="thumbnail">
             <div>
                 <h2>{{ p.title }}</h2>
-                <p>{{ p.price }}</p>
-                <a href="{%url 'notification' p.id%}">Enquire</a>
-                <button type="button" class="btn btn-danger">Remove</button>
+                <p>Price: {{ p.price }}</p>
+                <button type="button" class="btn btn-success" style="color: white;"><a href="{%url 'enquiry' p.id%}" style="color: inherit;">Enquire</a></button>
+                
+                <button type="button" class="btn btn-danger" style="color: white;"><a href="{%url 'wishlistitem-remove' p.id%}" style="color: inherit;">Remove</a></button>
                 
             </div>
         </div>
         
     </div>
     {% endfor %}
+    <div class="centered-container">
+        <a class="go-to-home-link" href="{%url 'index'%}">Home</a>
+    </div>
+
 </body>
 </html>
